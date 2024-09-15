@@ -3,7 +3,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import menu.Menu;
 import usuarios.AdmRepositorio;
-import usuarios.Usuario;
+import livros.SistemaGestaoLivros;
 import usuarios.UsuarioRepositorio;
 
 public class Main {
@@ -12,7 +12,8 @@ public class Main {
 		Scanner perguntar = new Scanner(System.in);
 		UsuarioRepositorio repositorio = new UsuarioRepositorio();
 		AdmRepositorio repositorioAdm = new AdmRepositorio();
-		Menu menu = new Menu();
+		SistemaGestaoLivros livroRepositorio = new SistemaGestaoLivros();
+		Menu menu = new Menu(livroRepositorio);
 		
 		repositorioAdm.carregarAdms();
 		repositorio.carregarUsuarios();
@@ -29,7 +30,7 @@ public class Main {
 			} else if (numero == 2) {
 				menu.menuAdm();
             } else if (numero == 3) {
-                System.out.println("CABO");
+                System.out.println("Encerrando...");
                 break;
             } else {
                 System.out.println("Opção inválida. Tente novamente.");

@@ -4,16 +4,22 @@ import usuarios.Adm;
 import usuarios.AdmRepositorio;
 import usuarios.Usuario;
 import usuarios.UsuarioRepositorio;
+import livros.SistemaGestaoLivros;
 
 public class Menu {
 	
 	Scanner perguntar = new Scanner(System.in);
 	UsuarioRepositorio repositorio = new UsuarioRepositorio();
 	AdmRepositorio repositorioAdm = new AdmRepositorio();
+	private SistemaGestaoLivros livroRepositorio;
+	
+	public Menu(SistemaGestaoLivros livroRepositorio) {
+        this.livroRepositorio = livroRepositorio;
+    }
 	
 	public void menuUsuario() {
 		while(true) {
-			System.out.println("Cadastrar novo usuário 1\nEntrar em uma conta 2\nRetornar 3");
+			System.out.println("1. Cadastrar novo usuário \n2. Entrar em uma conta \n3. Retornar ");
 			System.out.println("Digite uma opcão: ");
 			
 			int numero = Integer.parseInt(perguntar.nextLine());
@@ -36,6 +42,8 @@ public class Menu {
 				Usuario usuario = repositorio.autenticarUsuarios(nome, senha, email);
 				if(usuario != null) {
 					System.out.println("autenticacão concluida");
+					MenuUsuarioLivro menuUsuarioLivros = new MenuUsuarioLivro(usuario, livroRepositorio);
+					menuUsuarioLivros.menuUsuarioLivros();
 				}else {
 					System.out.println("Erro de autenticação: senha ou usuario ou email incorretos");
 				}
@@ -72,6 +80,8 @@ public class Menu {
 				Adm adm = repositorioAdm.autenticarAdms(nome, senha, email);
 				if(adm != null) {
 					System.out.println("Autenticação concluida");
+					menuAdmLivro admlivro = new menuAdmLivro(adm, livroRepositorio);
+					admlivro.menuAdm();
 				}else {
 					System.out.println("Erro de autenticação: senha ou usuario ou email incorretos");
 				}
