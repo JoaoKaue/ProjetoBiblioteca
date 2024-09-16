@@ -7,7 +7,7 @@ import usuarios.Adm;
 
 public class menuAdmLivro {
 	private Scanner perguntar = new Scanner(System.in);
-	//private SistemaGestaoLivros livroRepositorio = new SistemaGestaoLivros();
+
 	private SistemaGestaoLivros livroRepositorio;
 	private Adm adm;
 	Random random = new Random();

@@ -2,15 +2,12 @@ package usuarios;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-
 public class UsuarioRepositorio {
 	private List<Usuario> usuarios;
-	
 	public UsuarioRepositorio() {
 		this.usuarios = new ArrayList<>();
 		carregarUsuarios();
-	}
-	
+	}	
 	public void adicionarUsuario(Usuario usuario) {
 		if(usuario.validarUserName() && usuario.validarSenha() && usuario.validarEmail()) {
 			usuarios.add(usuario);
@@ -21,8 +18,7 @@ public class UsuarioRepositorio {
 	        System.out.println("Validar Senha: " + usuario.validarSenha());
 	        System.out.println("Validar Email: " + usuario.validarEmail());
 		}
-	}
-	
+	}	
 	public Usuario autenticarUsuarios(String nome, String senha, String email) {
 		for(Usuario usuario: usuarios) {
 			if(usuario.getNome().equals(nome) && usuario.getSenha().equals(senha) && usuario.getEmail().equals(email)) {

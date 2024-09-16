@@ -5,26 +5,22 @@ import menu.Menu;
 import usuarios.AdmRepositorio;
 import livros.SistemaGestaoLivros;
 import usuarios.UsuarioRepositorio;
-
 public class Main {
-
 	public static void main(String[] args) {
 		Scanner perguntar = new Scanner(System.in);
 		UsuarioRepositorio repositorio = new UsuarioRepositorio();
 		AdmRepositorio repositorioAdm = new AdmRepositorio();
 		SistemaGestaoLivros livroRepositorio = new SistemaGestaoLivros();
 		Menu menu = new Menu(livroRepositorio);
-		
 		repositorioAdm.carregarAdms();
 		repositorio.carregarUsuarios();
-
+		livroRepositorio.carregarLivros();
         while(true) {
         	try {
         	System.out.println("------Bem Vindo------");
 			System.out.println("Você é: \nUsuário 1\nAdministrador 2\nFechar programa 3");
 			System.out.println("Digite uma opcão: ");
 			int numero = Integer.parseInt(perguntar.nextLine());
-			
 			if(numero == 1) {
 				menu.menuUsuario();
 			} else if (numero == 2) {
@@ -41,8 +37,6 @@ public class Main {
     } 
         menu.salvarAdms();
         menu.salvarUsuarios();
-        
+        livroRepositorio.salvarLivros();  
   }	
 }	
-	
-
